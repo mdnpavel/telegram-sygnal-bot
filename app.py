@@ -2,7 +2,7 @@ from flask import Flask, request
 import requests
 import os
 
-app = Flask(name)
+app = Flask(__name__)
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = os.environ.get("CHAT_ID")
@@ -15,5 +15,5 @@ def signal():
     requests.post(url, json={"chat_id": CHAT_ID, "text": message})
     return 'OK'
 
-if name == 'main':
+if __name__ == '__main__':
     app.run(host="0.0.0.0", port=10000)
